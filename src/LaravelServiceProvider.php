@@ -57,6 +57,8 @@ class LaravelServiceProvider extends ServiceProvider
             HandlerStack::class,
             function (Container $container) {
                 $middleware = $container->make(OutgoingRequestLoggingMiddleware::class);
+                $middleware->enableRequestLogging(false);
+                $middleware->enableResponseLogging(false);
 
                 $stack = HandlerStack::create();
                 $stack->push($middleware, 'garbetjie-http-request-logging');
